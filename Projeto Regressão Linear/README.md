@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./Imagens/brasao-pucminas-versao-2025.png" alt="Logo do Projeto" width="100">
+  <img src="../Imagens/brasao-pucminas-versao-2025.png" alt="Logo do Projeto" width="100">
 </p>
 
 # Análise Preditiva de Preços de Imóveis (King County, EUA)
@@ -40,7 +40,7 @@ Identificação e remoção de inconsistências que poderiam enviesar o modelo:
 * **Transformação Logarítmica:** Aplicada à variável `price` (target) para corrigir assimetria à direita e aproximar a distribuição de uma normal.
 
 <p align="center">
-  <img src="./Imagens/Graf_Distribuicao.png" alt="Gráfico da Distribuição de Preços" width="900">
+  <img src="../Imagens/Graf_Distribuicao.png" alt="Gráfico da Distribuição de Preços" width="900">
 </p>
 
 ### 2. Amostragem Estratificada
@@ -61,7 +61,7 @@ Após análise da Matriz de Correlação de Pearson, removemos variáveis redund
 | `zipcode` | Variável nominal tratada como numérica (gerava ruído). |
 
 <p align="center">
-  <img src="./Imagens/Matriz-Correlacao.png" alt="Gráfico de Correlação" width="900">
+  <img src="../Imagens/Matriz-Correlacao.png" alt="Gráfico de Correlação" width="900">
 </p>
 
 ---
@@ -74,7 +74,7 @@ Após análise da Matriz de Correlação de Pearson, removemos variáveis redund
 3.  **Teste de Hipótese:** A variável `bathrooms` (e/ou quartos, dependendo do teste final) mostrou-se estatisticamente irrelevante para este modelo específico, sendo removida para otimizar os critérios de informação (AIC/BIC).
 
 <p align="center">
-  <img src="./Imagens/Primeiro-Teste.png" alt="Resumo do Modelo" width="600">
+  <img src="../Imagens/Primeiro-Teste.png" alt="Resumo do Modelo" width="600">
 </p>
 
 ### Métricas Finais
@@ -87,13 +87,13 @@ Após análise da Matriz de Correlação de Pearson, removemos variáveis redund
 
 
 <p align="center">
-  <img src="./Imagens/Teste-Normalizado.png" alt="Resumo do Modelo" width="600">
+  <img src="../Imagens/Teste-Normalizado.png" alt="Resumo do Modelo" width="600">
 </p>
 
 ### Análise de Resíduos
 O histograma de resíduos aproximou-se de uma normal, indicando que o modelo não está enviesado (viciado), embora tenda a **subestimar** imóveis de valores muito altos (luxo).
 <p align="center">
-  <img src="./Imagens/Resultados-Finais.png" alt="Gráfico Final" width="600">
+  <img src="../Imagens/Resultados-Finais.png" alt="Gráfico Final" width="600">
 </p>
 
 ---
