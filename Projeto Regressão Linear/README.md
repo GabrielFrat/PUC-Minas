@@ -131,30 +131,27 @@ O modelo assume uma relação linear entre as variáveis explicativas e a variá
 </p>
 
 
-### 2. Homocedasticidade
-A variância dos erros deve ser constante para todas as observações (ausência de "funil" nos resíduos).
-- **Validação:** Inspeção visual do scatterplot *Resíduos vs. Preditos*.
-- **Resultado:** Observou-se leve heterocedasticidade nos imóveis de alto luxo (comum no setor imobiliário), mas controlada pela padronização (`StandardScaler`).
-- **Status:** ⚠️ **Aceitável** (Variação controlada, não compromete a inferência).
+## 2. Homocedasticidade
+A variância dos erros deve ser constante para todas as observações (ausência de padrão em “funil” nos resíduos).
 
+- **Validação:** Inspeção visual do *scatterplot Resíduos vs. Valores Preditos* (idealmente). **Nota:** O gráfico atual é um histograma da distribuição dos resíduos, que serve para análise de normalidade, não para homocedasticidade.
+- **Resultado:** Observam-se **indícios leves de heterocedasticidade** nos imóveis de alto luxo (fenômeno comum no setor imobiliário). Esses desvios não se mostram sistemáticos ao longo dos valores ajustados.
+- **Observação:** A padronização das variáveis explicativas (`StandardScaler`) contribui para a estabilidade numérica do modelo, embora **não elimine heterocedasticidade estrutural** nos resíduos.
+- **Status:** ⚠️ **Aceitável** (Variação limitada, sem comprometimento da inferência).
 
-<p align="center">
-  <img src="../Imagens/Dist_Residuos.png" alt="Gráfico Final" width="600">
-</p>
+![Distribuição dos Resíduos](../Imagens/Dist_Residuos.png)
+  
 
+## 3. Normalidade dos Resíduos
+Os erros de previsão devem seguir uma Distribuição Normal para que os intervalos de confiança clássicos sejam estritamente válidos.
 
-### 3. Normalidade dos Resíduos
-Os erros de previsão devem seguir uma Distribuição Normal para que os intervalos de confiança sejam válidos.
-- **Validação:** Histograma dos Resíduos, Q-Q Plot e teste de Jarque-Bera.
-- **Resultado:** O teste Jarque-Bera indicou desvio da normalidade estrita (devido a outliers remanescentes nas caudas).
-- **Justificativa:** Com **N = 1.500 observações**, apoiamo-nos no **Teorema Central do Limite (CLT)**, que garante a estabilidade dos estimadores mesmo com leves desvios de normalidade nos resíduos.
+- **Validação:** Histograma dos resíduos, Q-Q Plot e teste de Jarque-Bera.
+- **Resultado:** O teste de Jarque-Bera indicou **desvio da normalidade estrita**, associado principalmente à presença de outliers remanescentes nas caudas da distribuição.
+- **Justificativa:** Com **N = 1.500 observações**, a inferência permanece válida ao apoiar-se no **Teorema Central do Limite (CLT)**, que garante a estabilidade assintótica dos estimadores mesmo sob leves desvios de normalidade.
 - **Status:** ✅ **Atendido (via CLT)**.
 
-
-<p align="center">
-  <img src="../Imagens/QQ_Plot.png" alt="Gráfico Final" width="600">
-</p>
-
+![Q-Q Plot dos Resíduos](../Imagens/QQ_Plot.png)
+  
 
 ### 4. Ausência de Multicolinearidade
 As variáveis independentes não devem ter alta correlação entre si (redundância).
