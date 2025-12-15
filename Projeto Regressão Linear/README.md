@@ -30,8 +30,26 @@ O trabalho abrange a limpeza e o tratamento de dados, amostragem estratificada, 
 
 ---
 
-## ⚙️ Metodologia e Processamento
+## 🗂️ Dicionário de Dados
 
+| Variável | Tipo | Subtipo | Descrição |
+| :--- | :--- | :--- | :--- |
+| **`price`** | Quantitativa | Contínua | **Variável Alvo ($y$)**. Preço de venda do imóvel. |
+| `sqft_living` | Quantitativa | Contínua | Área construída do espaço interior. |
+| `sqft_lot` | Quantitativa | Contínua | Área total do terreno. |
+| `bathrooms` | Quantitativa | Contínua | Qtd. de banheiros (decimais indicam lavabos). |
+| `bedrooms` | Quantitativa | Discreta | Número de quartos. |
+| `floors` | Quantitativa | Discreta | Número de andares. |
+| `yr_built` | Quantitativa | Discreta | Ano de construção. |
+| `yr_renovated`| Quantitativa | Discreta | Ano de reforma. |
+| `waterfront` | Qualitativa | Nominal | Vista para água (0=Não, 1=Sim). |
+| `zipcode` | Qualitativa | Nominal | Código postal (Região). |
+| `condition` | Qualitativa | Ordinal | Estado de conservação (Ranking). |
+| `grade` | Qualitativa | Ordinal | Nível de construção/design (Ranking). |
+| `view` | Qualitativa | Ordinal | Qualidade da vista (Ranking). |
+
+
+## ⚙️ Metodologia e Processamento
 ### 1. Limpeza e Tratamento de Dados
 Identificação e remoção de inconsistências que poderiam enviesar o modelo:
 * **Outliers e Erros:** Remoção de registros ilógicos (ex: casas com 33 quartos mas média de 3; imóveis sem banheiros ou quartos; áreas `sqft_lot` desproporcionais).
