@@ -71,7 +71,7 @@ Após análise da Matriz de Correlação de Pearson, removemos variáveis redund
 ### Iteração e Ajustes
 1.  **Multicolinearidade:** O primeiro treino apresentou $R^2 = 76.3\%$, mas com alta multicolinearidade devido à disparidade de escalas.
 2.  **Padronização:** Aplicação do `StandardScaler`. Isso revelou que a variável `grade` possui o maior peso na decisão do modelo.
-3.  **Teste de Hipótese:** A variável `bathrooms` (e/ou quartos, dependendo do teste final) mostrou-se estatisticamente irrelevante para este modelo específico, sendo removida para otimizar os critérios de informação (AIC/BIC).
+3.  **Teste de Hipótese:** A variável `bedrooms` mostrou-se estatisticamente irrelevante para este modelo específico, podendo ser removida para otimizar os critérios de informação (AIC/BIC).
 
 <p align="center">
   <img src="../Imagens/Primeiro-Teste.png" alt="Resumo do Modelo" width="600">
@@ -83,7 +83,7 @@ Após análise da Matriz de Correlação de Pearson, removemos variáveis redund
 * **AIC:** `208.0` (Baixo valor, indicando bom equilíbrio entre simplicidade e erro).
 * **Fatores de Influência:**
     * 🟢 `grade` (Coef: 0.2121) e `sqft_living` (Coef: 0.1787) são os maiores influenciadores positivos.
-    * 🔴 Quantidade de quartos/banheiros apresentou P-valor alto (>0.05), indicando irrelevância estatística neste cenário.
+    * 🔴 Quantidade de quartos apresentou P-valor alto (>0.05), indicando irrelevância estatística neste cenário.
 
 
 <p align="center">
