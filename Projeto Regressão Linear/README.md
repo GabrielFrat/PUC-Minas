@@ -97,7 +97,72 @@ O histograma de resíduos aproximou-se de uma normal, indicando que o modelo nã
 </p>
 
 ---
+## 📊 Validação dos Pressupostos (Regressão Linear)
 
+Para garantir a confiabilidade estatística do modelo **OLS (Ordinary Least Squares)**, foram validados os 5 pressupostos clássicos da regressão linear. Abaixo, o diagnóstico de cada item para o modelo final:
+
+### 1. Linearidade
+O modelo assume uma relação linear entre as variáveis explicativas e a variável alvo.
+- **Validação:** Análise gráfica de *Resíduos vs. Valores Preditos*.
+- **Ação:** Aplicada transformação logarítmica (`np.log`) nas variáveis `price` e `sqft_lot` para linearizar as relações exponenciais observadas.
+- **Status:** ✅ **Atendido** (Tendência linear confirmada após transformações).
+
+<p align="center">
+  <img src="../Imagens/Residuos.png" alt="Gráfico Final" width="600">
+</p>
+
+
+### 2. Homocedasticidade
+A variância dos erros deve ser constante para todas as observações (ausência de "funil" nos resíduos).
+- **Validação:** Inspeção visual do scatterplot *Resíduos vs. Preditos*.
+- **Resultado:** Observou-se leve heterocedasticidade nos imóveis de alto luxo (comum no setor imobiliário), mas controlada pela padronização (`StandardScaler`).
+- **Status:** ⚠️ **Aceitável** (Variação controlada, não compromete a inferência).
+
+
+<p align="center">
+  <img src="../Imagens/Dist_Residuos.png" alt="Gráfico Final" width="600">
+</p>
+
+
+### 3. Normalidade dos Resíduos
+Os erros de previsão devem seguir uma Distribuição Normal para que os intervalos de confiança sejam válidos.
+- **Validação:** Histograma dos Resíduos, Q-Q Plot e teste de Jarque-Bera.
+- **Resultado:** O teste Jarque-Bera indicou desvio da normalidade estrita (devido a outliers remanescentes nas caudas).
+- **Justificativa:** Com **N = 1.500 observações**, apoiamo-nos no **Teorema Central do Limite (CLT)**, que garante a estabilidade dos estimadores mesmo com leves desvios de normalidade nos resíduos.
+- **Status:** ✅ **Atendido (via CLT)**.
+
+
+<p align="center">
+  <img src="../Imagens/QQ_Plot.png" alt="Gráfico Final" width="600">
+</p>
+
+
+### 4. Ausência de Multicolinearidade
+As variáveis independentes não devem ter alta correlação entre si (redundância).
+- **Validação:** Cálculo do **VIF (Variance Inflation Factor)**.
+- **Critério:** VIF < 10 (Ideal < 5).
+- **Ação:** Remoção estratégica de variáveis redundantes (ex: `sqft_above` removida em favor de `sqft_living`).
+- **Status:** ✅ **Atendido** (Todas as variáveis do modelo final possuem VIF controlado).
+
+
+<p align="center">
+  <img src="../Imagens/VIF_Final.png" alt="Gráfico Final" width="600">
+</p>
+
+
+### 5. Independência dos Erros
+Os resíduos não devem apresentar autocorrelação (padrões dependentes entre observações vizinhas).
+- **Validação:** Teste de **Durbin-Watson**.
+- **Resultado:** O valor do teste situou-se na faixa de **1.5 a 2.5**.
+- **Status:** ✅ **Atendido** (Ausência de autocorrelação serial ou espacial significativa).
+
+
+<p align="center">
+  <img src="../Imagens/Independencia.png" alt="Gráfico Final" width="600">
+</p>
+
+
+---
 ## 🚀 Conclusão
 
 O modelo final é funcional e estatisticamente robusto para a maioria dos casos no Condado de King. 
