@@ -90,7 +90,7 @@ Após análise da Matriz de Correlação de Pearson, removemos variáveis redund
 ### Iteração e Ajustes
 1.  **Multicolinearidade:** O primeiro treino apresentou $R^2 = 76.3\%$, mas com alta multicolinearidade devido à disparidade de escalas.
 2.  **Padronização:** Aplicação do `StandardScaler`. Isso revelou que a variável `grade` possui o maior peso na decisão do modelo.
-3.  **Teste de Hipótese:** A variável `bedrooms` mostrou-se estatisticamente irrelevante para este modelo específico, podendo ser removida para otimizar os critérios de informação (AIC/BIC).
+3.  **Teste de Hipótese:** A variável `bedrooms` mostrou-se estatisticamente irrelevante para este modelo específico, além de sqft_basement, long e was_renovated podendo serem removidas para otimizar os critérios de informação (AIC/BIC).
 
 <p align="center">
   <img src="../Imagens/Primeiro-Teste.png" alt="Resumo do Modelo" width="600">
