@@ -7,6 +7,7 @@
 
 
 **Autor:** Gabriel Fratucci dos Reis  | Nathalia Paro Muniz
+
 **Ano:** 2025  
 **Tecnologias:** Python, Pandas, Scikit-learn, Statsmodels
 
