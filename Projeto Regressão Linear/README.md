@@ -151,7 +151,11 @@ Os erros de previsão devem seguir uma Distribuição Normal para que os interva
 - **Resultado:** O teste de Jarque-Bera indicou **desvio da normalidade estrita**, associado principalmente à presença de outliers remanescentes nas caudas da distribuição.
 - **Justificativa:** Com **N = 1.500 observações**, a inferência permanece válida ao apoiar-se no **Teorema Central do Limite (CLT)**, que garante a estabilidade assintótica dos estimadores mesmo sob leves desvios de normalidade.
 - **Status:** ✅ **Atendido (via CLT)**.
+
+  
 ![Distribuição dos Resíduos](../Imagens/Dist_Residuos.png)
+
+
 ![Q-Q Plot dos Resíduos](../Imagens/QQ_Plot.png)
   
 
