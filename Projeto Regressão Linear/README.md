@@ -6,7 +6,7 @@
 ### Trabalho Final: Técnicas de Amostragem e Regressão Linear
 
 
-**Autor:** Gabriel Fratucci dos Reis  
+**Autor:** Gabriel Fratucci dos Reis  | Nathalia Paro Muniz
 **Ano:** 2025  
 **Tecnologias:** Python, Pandas, Scikit-learn, Statsmodels
 
