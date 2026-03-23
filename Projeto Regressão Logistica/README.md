@@ -38,12 +38,12 @@ O pipeline de tratamento envolveu as seguintes etapas:Higienização de Chaves:
 
 Análise da Base de Dados
 <p align="center">
-  <img src="../Imagens/analise_descitiva.jpeg" alt="" width="100">
+  <img src="../Imagens/analise_descitiva.jpeg" alt="" width="900">
 </p>
 
 Limpeza Básica dos Dados
 <p align="center">
-  <img src="../Imagens/remocao_dados_nulos.jpeg" alt="Logo do Projeto" width="100">
+  <img src="../Imagens/remocao_dados_nulos.jpeg" alt="Logo do Projeto" width="900">
 </p>
 
 A análise descritiva da base bruta (926 observações) revelou três características marcantes nos dados financeiros que guiaram as etapas de pré-processamento e modelagem:
