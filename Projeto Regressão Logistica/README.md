@@ -32,5 +32,23 @@ O pipeline de tratamento envolveu as seguintes etapas:Higienização de Chaves:
 
 - Padronização de CNPJs (preenchimento com zeros à esquerda até 14 dígitos) para cruzamento exato (Left Join) entre as bases da CVM e da B3.
 - Criação da Variável Alvo: Cálculo do Dividend Yield utilizando os dividendos pagos em $T+1$ divididos pelo valor de mercado em $T$.
-- Tratamento de Outliers (Winsorização): O mercado financeiro possui valores extremos que distorcem modelos logísticos. Foi aplicada a técnica de winsorização, limitando os dados aos percentis 5% e 95% para as variáveis independentes.
-- Tratamento de Nulos: Exclusão de linhas sem dados financeiros suficientes para o cálculo das variáveis independentes (LPA, FCL, Payout_Contabil).
+- Inserção da cotação de cada ativo usando a biblioteca yfinance
+
+### 4. Análise de Variáveis
+
+Análise da Base de Dados
+<p align="center">
+  <img src="../Imagens/analise_descitiva.jpeg" alt="" width="100">
+</p>
+
+Limpeza Básica dos Dados
+<p align="center">
+  <img src="../Imagens/remocao_dados_nulos.jpeg" alt="Logo do Projeto" width="100">
+</p>
+
+A análise descritiva da base bruta (926 observações) revelou três características marcantes nos dados financeiros que guiaram as etapas de pré-processamento e modelagem:
+
+- Desbalanceamento da Variável Alvo: A média da variável Y_Bom_Pagador é de $0.0982$. Isso comprova que apenas $\approx$ 9,8% da amostra atingiu o critério de pagar mais de 6% de Dividend Yield. Trata-se de um evento raro no mercado, o que exige um modelo logístico robusto para identificar os padrões dessa minoria.
+- Presença de Outliers Extremos: O mercado financeiro apresenta variações contábeis drásticas. A variável Payout Contábil, por exemplo, possui uma mediana (50%) de $0.00$, mas um valor máximo de $4974.95$ (distribuição muito acima do lucro do exercício, possivelmente por venda de ativos ou uso de reservas). O mesmo ocorre no ROE (mínimo de -111.510) e na Margem Liquida. Esses valores extremos justificam a necessidade absoluta da técnica de winsorização aplicada na etapa de processamento.
+- Discrepância de Escalas: A variável FCL (Fluxo de Caixa Livre) opera na escala de centenas de milhões (ordem de grandeza $e+08$), enquanto indicadores como LPA e Liquidez Corrente operam em unidades ou dezenas. Essa assimetria exige atenção na interpretação dos coeficientes (Odds Ratios) gerados pelo modelo logístico final.
+
