@@ -69,11 +69,11 @@ Variáveis da Base de Dados:### Dicionário de Dados
 
 ### 5. Execução de Modelo
 
+Conclusões do Modelo 1 (Baseline):
+
 <p align="center">
   <img src="../Imagens/reg_log_teste_1.jpeg" alt="Logo do Projeto" width="600">
 </p>
-
-Conclusões do Modelo 1 (Baseline):
 
 A primeira execução provou que métricas operacionais expostas a valores extremos (outliers) não explicam a distribuição de proventos.
 
