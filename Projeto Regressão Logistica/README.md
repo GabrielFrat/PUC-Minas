@@ -67,16 +67,71 @@ Variáveis da Base de Dados:### Dicionário de Dados
 | **Liquidez Corrente** | Numérica Contínua | Indicador de solvência de curto prazo. Mede a capacidade da empresa de arcar com suas obrigações no curto prazo (Ativo Circulante dividido pelo Passivo Circulante). |
 
 
-### 5. Execução de Modelo Baseline
+### 5. Execução de Modelo
 
 <p align="center">
-  <img src="../Imagens/reg_log_teste_1.jpeg" alt="Logo do Projeto" width="900">
+  <img src="../Imagens/reg_log_teste_1.jpeg" alt="Logo do Projeto" width="600">
 </p>
 
 Conclusões do Modelo 1 (Baseline):
+
 A primeira execução provou que métricas operacionais expostas a valores extremos (outliers) não explicam a distribuição de proventos.
 
 Validade Global: O modelo foi estatisticamente insignificante, com LLR p-value de 0.6360 (muito acima do limite de 0.05) e Pseudo R-squared de apenas 0.0042 (0,4%).
 
 Coeficientes: Nenhuma variável apresentou p-valor válido. Os Odds Ratios resultaram próximos a 1.00, indicando zero impacto na probabilidade do evento. Uma empresa pode ter alto ROE e reter todo o lucro, invalidando a predição.
+
+Conclusões do Modelo 2 (Novas variáveris e Winsorização):
+<p align="center">
+  <img src="../Imagens/reg_log_teste_2.jpeg" alt="Logo do Projeto" width="600">
+</p>
+
+Este modelo avalia o impacto conjunto de seis indicadores financeiros após o tratamento de outliers. 
+
+Apresenta validade estatística global (LLR p-value de 2.842e-34) e explica 29,25% do evento (Pseudo R² = 0.2925). 
+
+A tabela de coeficientes revela que os indicadores de rentabilidade e alavancagem (ROE, Margem Líquida e Dívida Líquida/EBITDA) falharam no teste de significância (p-valores > 0.05), indicando que não possuem poder preditivo sobre a distribuição de dividendos na amostra. Apenas Payout, FCL e LPA demonstraram relevância estatística.
+
+Conclusões do Modelo 3 (Modelo Parcimonioso):
+
+<p align="center">
+  <img src="../Imagens/reg_log_teste_3.jpeg" alt="Logo do Projeto" width="600">
+</p>
+
+Este modelo refina a análise anterior excluindo as variáveis insignificantes. 
+
+O resultado demonstra a eficácia da parcimônia: o poder explicativo manteve-se estável (Pseudo R² = 0.2904), enquanto a significância global do modelo aumentou (LLR p-value de 1.456e-36). 
+
+Todas as três variáveis mantidas (Payout Contábil, FCL e LPA) apresentam p-valores de 0.000, validando-as como preditores definitivos. 
+
+### 6. Validação de Pressupostos
+
+<p align="center">
+  <img src="../Imagens/analise_vif_correlacao.jpeg" alt="Logo do Projeto" width="600">
+</p>
+
+Análise de Correlação
+A matriz de correlação evidenciou ausência de forte dependência linear entre as variáveis independentes. A maior correlação encontrada foi entre Payout Contábil e LPA ($r = 0.18$), considerada fraca.
+
+Validação de Pressupostos (Multicolinearidade)
+O teste VIF (*Variance Inflation Factor*) validou o pressuposto de ausência de multicolinearidade. Mantendo-se rigorosamente abaixo do limite crítico de 5. 
+
+Interpretação dos Coeficientes (Odds Ratio)
+Com a independência das variáveis comprovada, a leitura dos multiplicadores de chance (*Odds Ratios*) ocorre de forma isolada (*ceteris paribus*):
+
+* **LPA ($OR \approx 2.08$):** Variável de maior impacto. O aumento de R$ 1,00 no Lucro Por Ação eleva a chance da empresa ser uma boa pagadora de dividendos no ano seguinte em 108% (probabilidade mais que dobra).
+* **Payout Contábil ($OR \approx 1.029$):** O acréscimo de 1% no histórico de distribuição de lucros da empresa aumenta as chances do evento em aproximadamente 2,9%.
+* **FCL ($OR = 1.000$):** Estatisticamente significativo ($p < 0.05$), o Fluxo de Caixa Livre atua como um validador de liquidez. O multiplicador resulta em 1 devido à sua escala bruta (reais absolutos), indicando que a geração real de caixa autoriza o pagamento, mas a variação de apenas R$ 1,00 não altera a probabilidade de forma isolada.
+
+
+<p align="center">
+  <img src="../Imagens/analise_final" alt="Logo do Projeto" width="600">
+</p>
+
+
+Tamanho Adequado da Amostra: O pressuposto de volumetria foi atendido com folga. O teste registrou 30,33 eventos da classe minoritária (empresas boas pagadoras) para cada variável independente do modelo. Este número é três vezes superior ao limite mínimo exigido pela literatura estatística (regra de 10 eventos por variável), garantindo graus de liberdade suficientes para o algoritmo e afastando o risco de sobreajuste (*overfitting*).
+
+Linearidade com o Log-Odds (Teste de Box-Tidwell): O teste verificou se a relação entre as variáveis contínuas e o logaritmo das chances é linear. 
+  * As variáveis `Payout_Contabil` e `FCL` foram aprovadas (p-valores de interação de 0.941 e 0.672, respectivamente). 
+  * A variável `LPA` apresentou p-valor de 0.000, indicando não linearidade. No contexto financeiro, isso é esperado e mantido no modelo: reflete o princípio econômico do ganho marginal decrescente. O impacto preditivo de o Lucro Por Ação saltar de R$ 1 para R$ 2 é muito mais forte do que um salto de R$ 50 para R$ 51. O modelo absorve essa curvatura natural do mercado de capitais sem comprometer a sua validade global.
 
