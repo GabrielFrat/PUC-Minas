@@ -52,7 +52,7 @@ A análise descritiva da base bruta (918 observações) revelou:
 - Presença de Outliers Extremos: A variável Payout Contábil, possui uma mediana (50%) de $0.00$, mas um valor máximo de $4974.95$ (distribuição muito acima do lucro do exercício, possivelmente por venda de ativos ou uso de reservas). O mesmo ocorre no ROE (mínimo de -111.510) e na Margem Liquida. Esses valores extremos justificam a necessidade absoluta da técnica de winsorização aplicada na etapa de processamento.
 - Discrepância de Escalas: A variável FCL (Fluxo de Caixa Livre) opera na escala de centenas de milhões (ordem de grandeza $e+08$), enquanto indicadores como LPA e Liquidez Corrente operam em unidades ou dezenas. Essa assimetria exige atenção na interpretação dos coeficientes (Odds Ratios) gerados pelo modelo logístico final.
 
-Variáveis da Base de Dados:### Dicionário de Dados
+### Dicionário de Dados
 
 | Variável | Tipo | Descrição |
 | :--- | :--- | :--- |
