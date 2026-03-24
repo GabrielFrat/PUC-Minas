@@ -83,7 +83,7 @@ Coeficientes: Nenhuma variável apresentou p-valor válido. Os Odds Ratios resul
 
 Conclusões do Modelo 2 (Novas variáveris e Winsorização):
 <p align="center">
-  <img src="../Imagens/reg_log_teste_2.jpeg" alt="Logo do Projeto" width="600">
+  <img src="../Imagens/log_reg_teste_2.jpeg" alt="Logo do Projeto" width="600">
 </p>
 
 Este modelo avalia o impacto conjunto de seis indicadores financeiros após o tratamento de outliers. 
@@ -95,7 +95,7 @@ A tabela de coeficientes revela que os indicadores de rentabilidade e alavancage
 Conclusões do Modelo 3 (Modelo Parcimonioso):
 
 <p align="center">
-  <img src="../Imagens/reg_log_teste_3.jpeg" alt="Logo do Projeto" width="600">
+  <img src="../Imagens/log_reg_teste_3.jpeg" alt="Logo do Projeto" width="600">
 </p>
 
 Este modelo refina a análise anterior excluindo as variáveis insignificantes. 
