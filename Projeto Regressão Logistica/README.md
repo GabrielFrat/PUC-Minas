@@ -46,9 +46,37 @@ Limpeza Básica dos Dados
   <img src="../Imagens/remocao_dados_nulos.jpeg" alt="Logo do Projeto" width="900">
 </p>
 
-A análise descritiva da base bruta (926 observações) revelou três características marcantes nos dados financeiros que guiaram as etapas de pré-processamento e modelagem:
+A análise descritiva da base bruta (918 observações) revelou:
 
-- Desbalanceamento da Variável Alvo: A média da variável Y_Bom_Pagador é de $0.0982$. Isso comprova que apenas $\approx$ 9,8% da amostra atingiu o critério de pagar mais de 6% de Dividend Yield. Trata-se de um evento raro no mercado, o que exige um modelo logístico robusto para identificar os padrões dessa minoria.
-- Presença de Outliers Extremos: O mercado financeiro apresenta variações contábeis drásticas. A variável Payout Contábil, por exemplo, possui uma mediana (50%) de $0.00$, mas um valor máximo de $4974.95$ (distribuição muito acima do lucro do exercício, possivelmente por venda de ativos ou uso de reservas). O mesmo ocorre no ROE (mínimo de -111.510) e na Margem Liquida. Esses valores extremos justificam a necessidade absoluta da técnica de winsorização aplicada na etapa de processamento.
+- Desbalanceamento da Variável Alvo: A média da variável Y_Bom_Pagador é de $0.0982$. Isso comprova que apenas $\approx$ 9,8% da amostra atingiu o critério de pagar mais de 6% de Dividend Yield.
+- Presença de Outliers Extremos: A variável Payout Contábil, possui uma mediana (50%) de $0.00$, mas um valor máximo de $4974.95$ (distribuição muito acima do lucro do exercício, possivelmente por venda de ativos ou uso de reservas). O mesmo ocorre no ROE (mínimo de -111.510) e na Margem Liquida. Esses valores extremos justificam a necessidade absoluta da técnica de winsorização aplicada na etapa de processamento.
 - Discrepância de Escalas: A variável FCL (Fluxo de Caixa Livre) opera na escala de centenas de milhões (ordem de grandeza $e+08$), enquanto indicadores como LPA e Liquidez Corrente operam em unidades ou dezenas. Essa assimetria exige atenção na interpretação dos coeficientes (Odds Ratios) gerados pelo modelo logístico final.
+
+Variáveis da Base de Dados:### Dicionário de Dados
+
+| Variável | Tipo | Descrição |
+| :--- | :--- | :--- |
+| **Y_Bom_Pagador** | Binária (0 ou 1) | Variável alvo (*target*). Assume o valor `1` se a empresa obteve um *Dividend Yield* $\ge$ 6% no ano seguinte (T+1), e `0` caso contrário. |
+| **Dividend_Yield_T1** | Numérica Contínua | Rendimento de dividendos no ano seguinte (T+1). Calculado pela razão entre os dividendos pagos em T+1 e o Valor de Mercado da empresa no fechamento do ano T. |
+| **Payout Contábil (%)** | Numérica Contínua | Percentual do lucro líquido do exercício que foi distribuído aos acionistas na forma de proventos (Dividendos e JCP). |
+| **FCL** | Numérica Contínua | Fluxo de Caixa Livre. Mede o montante de caixa gerado pelas operações da empresa após a dedução dos investimentos em capital fixo (CAPEX). |
+| **LPA** | Numérica Contínua | Lucro Por Ação. Indica a parcela do lucro líquido total alocada a cada ação emitida pela empresa. |
+| **ROE** | Numérica Contínua | Retorno sobre o Patrimônio Líquido (*Return on Equity*). Mede a rentabilidade da empresa sobre os recursos investidos pelos acionistas. |
+| **Margem Liquida** | Numérica Contínua | Razão entre o lucro líquido e a receita líquida. Indica a porcentagem de receita que restou como lucro após a dedução de custos e despesas. |
+| **Divida_Liquida_EBITDA** | Numérica Contínua | Métrica de alavancagem. Demonstra o número de anos que a empresa levaria para pagar sua dívida líquida utilizando a geração de caixa operacional atual (EBITDA). |
+| **Liquidez Corrente** | Numérica Contínua | Indicador de solvência de curto prazo. Mede a capacidade da empresa de arcar com suas obrigações no curto prazo (Ativo Circulante dividido pelo Passivo Circulante). |
+
+
+### 5. Execução de Modelo Baseline
+
+<p align="center">
+  <img src="../Imagens/reg_log_teste_1.jpeg" alt="Logo do Projeto" width="900">
+</p>
+
+Conclusões do Modelo 1 (Baseline):
+A primeira execução provou que métricas operacionais expostas a valores extremos (outliers) não explicam a distribuição de proventos.
+
+Validade Global: O modelo foi estatisticamente insignificante, com LLR p-value de 0.6360 (muito acima do limite de 0.05) e Pseudo R-squared de apenas 0.0042 (0,4%).
+
+Coeficientes: Nenhuma variável apresentou p-valor válido. Os Odds Ratios resultaram próximos a 1.00, indicando zero impacto na probabilidade do evento. Uma empresa pode ter alto ROE e reter todo o lucro, invalidando a predição.
 
