@@ -136,3 +136,8 @@ Linearidade com o Log-Odds (Teste de Box-Tidwell): O teste verificou se a relaç
   * As variáveis `Payout_Contabil` e `FCL` foram aprovadas (p-valores de interação de 0.941 e 0.672, respectivamente). 
   * A variável `LPA` apresentou p-valor de 0.000, indicando não linearidade. No contexto financeiro, isso é esperado e mantido no modelo: reflete o princípio econômico do ganho marginal decrescente. O impacto preditivo de o Lucro Por Ação saltar de R$ 1 para R$ 2 é muito mais forte do que um salto de R$ 50 para R$ 51. O modelo absorve essa curvatura natural do mercado de capitais sem comprometer a sua validade global.
 
+
+### 7. Conclusão
+
+O modelo logístico parcimonioso comprovou estatisticamente que a distribuição de dividendos é impulsionada pela geração real de caixa, lucratividade direta por ação e histórico de repasse, invalidando o uso de métricas operacionais genéricas. O tratamento de dados extremos via winsorização foi o fator determinante para garantir a estabilidade.
+
