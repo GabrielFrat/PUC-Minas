@@ -125,13 +125,14 @@ Com a independência das variáveis comprovada, a leitura dos multiplicadores de
 
 
 <p align="center">
-  <img src="../Imagens/analise_final" alt="Logo do Projeto" width="600">
+  <img src="../Imagens/analise_final.jpeg" alt="Logo do Projeto" width="600">
 </p>
 
 
-Tamanho Adequado da Amostra: O pressuposto de volumetria foi atendido com folga. O teste registrou 30,33 eventos da classe minoritária (empresas boas pagadoras) para cada variável independente do modelo. Este número é três vezes superior ao limite mínimo exigido pela literatura estatística (regra de 10 eventos por variável), garantindo graus de liberdade suficientes para o algoritmo e afastando o risco de sobreajuste (*overfitting*).
+Tamanho Adequado da Amostra: O pressuposto de volumetria foi atendido. O teste registrou 30,33 eventos da classe minoritária (empresas boas pagadoras) para cada variável independente do modelo. Este número é três vezes superior ao limite mínimo exigido pela literatura estatística (regra de 10 eventos por variável), garantindo graus de liberdade suficientes para o algoritmo e afastando o risco de sobreajuste (*overfitting*).
 
 Linearidade com o Log-Odds (Teste de Box-Tidwell): O teste verificou se a relação entre as variáveis contínuas e o logaritmo das chances é linear. 
+
   * As variáveis `Payout_Contabil` e `FCL` foram aprovadas (p-valores de interação de 0.941 e 0.672, respectivamente). 
   * A variável `LPA` apresentou p-valor de 0.000, indicando não linearidade. No contexto financeiro, isso é esperado e mantido no modelo: reflete o princípio econômico do ganho marginal decrescente. O impacto preditivo de o Lucro Por Ação saltar de R$ 1 para R$ 2 é muito mais forte do que um salto de R$ 50 para R$ 51. O modelo absorve essa curvatura natural do mercado de capitais sem comprometer a sua validade global.
 
